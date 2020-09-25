@@ -10,4 +10,9 @@ class Artista extends Model
     protected $primaryKey = "ArtistId";
     public $timestamps = false;
 
+    //Relacion Artista - Albumes
+    //Relación 1-m Utilizando hasMany: Metodo Eloquent
+    public function albumes(){
+        return $this->hasMany('App\Album','ArtistId');
+    }
 }

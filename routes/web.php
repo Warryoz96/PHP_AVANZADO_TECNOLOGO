@@ -19,8 +19,9 @@ Route::get('/', function () {
 
 //Ruta de prueba
 Route::get('hola' , function(){
-    echo "hola";
+    return view('layouts.master');
 });
+
 
 //Ruta de arreglo
 Route::get('arreglo', function(){
@@ -70,3 +71,14 @@ Route::get('paises', function(){
     //con la función view
     return view('paises')->with("paises", $paises);
 });
+
+//Rutas de controlador 
+Route::get('artistas', "ArtistaController@index");
+Route::get('artistas/create', 'ArtistaController@create');
+Route::post('artistas/store', 'ArtistaController@store');
+
+Route::resource('empleados', 'EmpleadoController');
+Route::get('empleados/create', 'EmpleadoController@create');
+Route::post('empleados/store', 'EmpleadoController@store');
+Route::post('empleados/update/{id}', ['as' => 'empleados/update', 'uses' => 'EmpleadoController@update']);
+
