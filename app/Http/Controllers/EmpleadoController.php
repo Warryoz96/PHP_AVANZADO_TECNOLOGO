@@ -57,15 +57,17 @@ class EmpleadoController extends Controller
             'min'=>"El campo debe tener 3 carácteres como mínimo",
             'max'=>"El campo debe tener 20 carácteres como máximo",
             'regex' => "El formato para el nombre es invalido",
-            "email" => "Debe ser un correo electronico valido"
+            "email" => "Debe ser un correo electronico valido",
+            "date_format" => "El formato de fecha debe ser valido"
+
         ];        //1.inicializo el validador
         $validator = Validator::make($request->all(),[
         //name del input -- Validación
             "ReportsTo" => ["required"],
             "FirstName" => ["required" , 'min:3', 'max:20', 'regex:/^[\pL\s\-]+$/u' ],
             "LastName" => ["required" , 'min:3', 'max:20', 'regex:/^[\pL\s\-]+$/u' ],
-            "BirthDate" => ["required"],
-            "HireDate" =>["required"],
+            "BirthDate" => ["required", "date_format:Y-m-d"],
+            "HireDate" =>["required" , "date_format:Y-m-d"],
             "City"  =>["required", "alpha"],
             "Title" => ["required"],
             "Email" => ["required", 'email:rfc,dns']
@@ -152,7 +154,8 @@ class EmpleadoController extends Controller
             'min'=>"El campo debe tener 3 carácteres como mínimo",
             'max'=>"El campo debe tener 20 carácteres como máximo",
             'regex' => "El formato para el nombre es invalido",
-            "email" => "Debe ser un correo electronico valido"
+            "email" => "Debe ser un correo electronico valido",
+            "date_format" => "El formato de fecha debe ser valido"
 
         ];
         //1.inicializo el validador
@@ -161,11 +164,12 @@ class EmpleadoController extends Controller
             "ReportsTo" => ["required"],
             "FirstName" => ["required" , "min:3", "max:20", 'regex:/^[\pL\s\-]+$/u' ],
             "LastName" => ["required" , "min:3", "max:20", 'regex:/^[\pL\s\-]+$/u' ],
-            "BirthDate" => ["required"],
-            "HireDate" =>["required"],
+            "BirthDate" => ["required", "date_format:Y-m-d"],
+            "HireDate" =>["required" , "date_format:Y-m-d"],
             "City"  =>["required"],
             "Title" => ["required"],
             "Email" => ["required", "email:rfc,dns"]
+            
         ],$mensajes);
 
         //  valido las validaciones 
