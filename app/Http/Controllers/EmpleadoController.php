@@ -82,6 +82,7 @@ class EmpleadoController extends Controller
         $empleado->LastName= $request->LastName;
         $empleado->BirthDate= $request->BirthDate;
         $empleado->HireDate= $request->HireDate;
+        $empleado->Email= $request->Email;
         $empleado->City= $request->City;
         $empleado->Title= $request->Title;
         $empleado->ReportsTo= $request->ReportsTo;
@@ -178,6 +179,7 @@ class EmpleadoController extends Controller
         $empleado->LastName= $request->LastName;
         $empleado->BirthDate= $request->BirthDate;
         $empleado->HireDate= $request->HireDate;
+        $empleado->Email= $request->Email;
         $empleado->City= $request->City;
         $empleado->Title= $request->Title;
         $empleado->ReportsTo= $request->ReportsTo;
