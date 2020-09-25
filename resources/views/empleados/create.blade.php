@@ -37,10 +37,6 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                 @else  hay errores de validacion
-                                @foreach($errors->all() as $error )
-                                    <p class="alert-danger">{{$error}}</p>
-                                @endforeach
                                 @endif
 
                 <form method="post" action=" {{ url('empleados/store') }}" > 
@@ -49,10 +45,12 @@
                         <div class="form-group col-md-6">
                             <label for="email">Nombre</label>
                             <input type="text" class="form-control" name="FirstName" id="email">
+                            <p class="text-danger">{{ $errors->first('FirstName')}}</p>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="apellido">Apellido</label>
                             <input type="apellido" class="form-control" name="LastName" id="apellido">
+                            <p class="text-danger">{{ $errors->first('LastName')}}</p>
                         </div>
                         
                     </div>
@@ -60,17 +58,21 @@
                         <div class="form-group col-md-4">
                             <label for="">Fecha Nacimiento</label>
                             <input type="text"  id="datepicker" name="BirthDate" class="form-control datepicker">
+                            <p class="text-danger">{{ $errors->first('BirthDate')}}</p>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Fecha de Contratacion</label>
                             <input type="text"  id="datepicker2" name="HireDate" class="form-control datepicker">
+                            <p class="text-danger">{{ $errors->first('HireDate')}}</p>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputCity">Ciudad</label>
                             <input type="text" name="City" class="form-control" id="inputCity">
+                            <p class="text-danger">{{ $errors->first('City')}}</p>
+
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="cargo">Cargo</label>
                             <select  class="form-control" name="Title" id="">
                                 <option value="">Seleccione...</option>
@@ -79,8 +81,10 @@
                                 <option>{{$c->Title}}</option>
                                 @endforeach
                             </select>
+                            <p class="text-danger">{{ $errors->first('Title')}}</p>
+
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="responsable">Jefe Directo</label>
                             <select  class="form-control" class="form-control" name="ReportsTo">
                                 <option value="">Seleccione...</option>
@@ -89,7 +93,15 @@
                                 <option value="{{$j->EmployeeId}}">{{$j->FirstName}} {{$j->LastName}}</option>
                                 @endforeach
                             </select>
+                            <p class="text-danger">{{ $errors->first('ReportsTo')}}</p>
+
                         </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail">Correo</label>
+                            <input type="email" name="Email"  class="form-control" id="inputEmail">
+                            <p class="text-danger">{{ $errors->first('Email')}}</p>
+                    </div>
+
                     </div>
 
                 </div><!--end card body-->

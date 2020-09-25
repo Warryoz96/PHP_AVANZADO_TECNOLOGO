@@ -15,7 +15,7 @@ class ArtistaController extends Controller
     public function index(){
 
         //capturar datos con los modelos
-        $artistas = Artista::all();
+        $artistas = Artista::paginate(7);
         //retornar vista que se muestre los artistas
        return view('artistas.index')
                    ->with('artistas', $artistas);

@@ -49,6 +49,32 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Paso paras validacion con laravel
+        $mensajes=[
+            'required'=>"El campo obligatorio",
+            'alpha'=> "Solo letras papu",
+            'min'=>"El campo debe tener 3 carácteres como mínimo",
+            'max'=>"El campo debe tener 20 carácteres como máximo",
+            'regex' => "El formato para el nombre es invalido",
+            "email" => "Debe ser un correo electronico valido"
+        ];        //1.inicializo el validador
+        $validator = Validator::make($request->all(),[
+        //name del input -- Validación
+            "ReportsTo" => ["required"],
+            "FirstName" => ["required" , 'min:3', 'max:20', 'regex:/^[\pL\s\-]+$/u' ],
+            "LastName" => ["required" , 'min:3', 'max:20', 'regex:/^[\pL\s\-]+$/u' ],
+            "BirthDate" => ["required"],
+            "HireDate" =>["required"],
+            "City"  =>["required", "alpha"],
+            "Title" => ["required"],
+            "Email" => ["required", 'email:rfc,dns']
+        ],$mensajes);
+
+        //  valido las validaciones 
+        if($validator->fails()){
+            return redirect("empleados/create")->withErrors($validator);
+            }
         //crear el objeto Empleado
         $empleado = new Empleado();
         //Asignar atributos
@@ -118,18 +144,34 @@ class EmpleadoController extends Controller
     public function update(Request $request, $id)
     {
 
-        // Paso para validacion con laravel
-        //importo la clase validador
-        //defino la variable regla para las reglas
-        $regla = [
-            "ReportsTo" => ["required"]
-        ];
-        //inicializo el validador
-        $validator = Validator::make($request->all(), $regla);
+        // Paso paras validacion con laravel
+        $mensajes=[
+            'required'=>"El campo obligatorio",
+            'alpha'=> "Solo letras papu",
+            'min'=>"El campo debe tener 3 carácteres como mínimo",
+            'max'=>"El campo debe tener 20 carácteres como máximo",
+            'regex' => "El formato para el nombre es invalido",
+            "email" => "Debe ser un correo electronico valido"
 
+        ];
+        //1.inicializo el validador
+        $validator = Validator::make($request->all(),[
+        //name del input -- Validación
+            "ReportsTo" => ["required"],
+            "FirstName" => ["required" , "min:3", "max:20", 'regex:/^[\pL\s\-]+$/u' ],
+            "LastName" => ["required" , "min:3", "max:20", 'regex:/^[\pL\s\-]+$/u' ],
+            "BirthDate" => ["required"],
+            "HireDate" =>["required"],
+            "City"  =>["required"],
+            "Title" => ["required"],
+            "Email" => ["required", "email:rfc,dns"]
+        ],$mensajes);
+
+        //  valido las validaciones 
         if($validator->fails()){
             return redirect("empleados/$id/edit")->withErrors($validator);
         }
+
         $empleado = Empleado::find($id);
         //Asignar atributos
         $empleado->FirstName= $request->FirstName;

@@ -46,27 +46,33 @@
                         <div class="form-group col-md-6">
                             <label for="email">Nombre</label>
                             <input type="text" class="form-control" name="FirstName" id="email" value=" {{$empleado->FirstName }}">
+                            <p class="text-danger">{{ $errors->first('FirstName')}}</p>
+
                         </div>
                         <div class="form-group col-md-6">
                             <label for="apellido">Apellido</label>
                             <input type="apellido" class="form-control" value=" {{$empleado->LastName }}"  name="LastName" id="apellido">
+                            <p class="text-danger">{{ $errors->first('LastName')}}</p>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="">Fecha Nacimiento</label>
                             <input type="text"  id="datepicker" name="BirthDate" value=" {{$empleado->BirthDate->format('Y-m-d') }}" class="form-control datepicker">
+                            <p class="text-danger">{{ $errors->first('BirthDate')}}</p>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Fecha de Contratacion</label>
                             <input type="text"  id="datepicker2" name="HireDate"  value=" {{$empleado->HireDate->format('Y-m-d') }}" class="form-control datepicker">
+                            <p class="text-danger">{{ $errors->first('HireDate')}}</p>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputCity">Ciudad</label>
                             <input type="text" name="City" value=" {{$empleado->City }}" class="form-control" id="inputCity">
+                            <p class="text-danger">{{ $errors->first('City')}}</p>
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="cargo">Cargo</label>
                             <select  class="form-control" id="" name="Title">
 
@@ -82,8 +88,9 @@
                                     @endif
                                 @endforeach
                             </select>
+                            <p class="text-danger">{{ $errors->first('Title')}}</p>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="responsable">Jefe Directo</label>
                              <select  class="form-control" class="form-control"  name="ReportsTo">
                                 <option value="">Seleccione...</option>
@@ -99,10 +106,14 @@
                                     @endif  
                                 @endforeach
                             </select>
-                            <p>{{ $errors->first('ReportsTo')}}</p>
+                            <p class="text-danger">{{ $errors->first('ReportsTo')}}</p>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail">Correo</label>
+                            <input type="email" name="Email" value=" {{$empleado->Email }}" class="form-control" id="inputEmail">
+                            <p class="text-danger">{{ $errors->first('Email')}}</p>
                         </div>
                     </div>
-
                 </div><!--end card body-->
                 <div class=" card-footer "> 
                 <button type="submit" class="offset-md-11  btn btn-outline-success">Actualizar</button>
